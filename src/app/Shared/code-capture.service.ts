@@ -1,20 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Login } from './login.model';
+import { CodeCapture } from './code-capture.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
-
-  formData: Login = new Login();
+export class CodeCaptureService {
+  formData: CodeCapture = new CodeCapture();
   readonly baseURL = '';
 
   constructor(private http: HttpClient) { }
 
   // tslint:disable-next-line:typedef
-  postLogin(){
-    return this.http.post(this.baseURL,this.formData);
+  postCodecapture(){
+    return this.http.post(this.baseURL, this.formData);
   }
-
 }

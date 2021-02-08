@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { CreateService } from '../Shared/create.service';
 
 @Component({
   selector: 'app-create',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: CreateService) { }
 
   ngOnInit(): void {
   }
+  onSubmit(form:NgForm){
+    this.service.createUser().subscribe(
+      res=>{
 
+      },
+      err=>{console.log(err);}
+    );
+  }
 }

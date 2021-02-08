@@ -9,17 +9,18 @@ import { LoginService } from '../Shared/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public service:LoginService) { }
+  constructor(public service: LoginService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(form:NgForm){
+  // tslint:disable-next-line:typedef
+  onSubmit(form: NgForm){
     this.service.postLogin().subscribe(
-      res=>{
+      res => {
 
       },
-      err=>{console.log(err);}
+      err => {console.log(err); }
     );
 
   }

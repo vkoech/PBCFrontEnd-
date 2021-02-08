@@ -8,19 +8,27 @@ import { CreateComponent } from './create/create.component';
 import { FormsModule } from '@angular/forms';
 import {  HttpClientModule} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { RecaptchaModule, RecaptchaFormsModule } from "ng-recaptcha";
+import { CodeCaptureComponent } from './code-capture/code-capture.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CreateComponent
+    CreateComponent,
+    PasswordResetComponent,
+    CodeCaptureComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
