@@ -7,20 +7,23 @@
         </div>
         <!-- <h6 class="font-weight-bolder p-2">Sign in to continue.</h6> -->
         <div ng-app="myApp" ng-controller="myController" class="container">
-          <form #form="ngForm" (submit)="onSubmit(form)">
-                <div class="form-group">
-                  <label for="email">Employee Number:</label>
-                  <input type="EmployeeNo" class="form-control" id="EmployeeNo"
-                    #EmployeeNo="ngModel" [(ngModel)]="service.formData.EmployeeNo"
-                    [ngModelOptions]="{standalone: true}">
-
-                </div>
-                <div class="form-group">
-                  <label for="password">Password:</label>
-                  <input type="password" class="form-control" id="password"
-                  #Password="ngModel" [(ngModel)]="service.formData.Password"
-                  [ngModelOptions]="{standalone: true}">
-                </div>
+          <form [formGroup]="loginForm"(submit)="onSubmit()">
+            <div class="form-group">
+              <label for="password">Employee Number</label>
+              <input formControlName="EmployeeNo" id="EmployeeNo" type="text" class="form-control">
+              <div *ngIf="f.EmployeeNo.touched && f.EmployeeNo.invalid" class="alert alert-danger">
+                <div *ngIf="f.EmployeeNo.errors?.required">EmployeeNo is required.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Password">Password</label>
+              <input
+                formControlName="Password" id="Password" type="Password" class="form-control">
+              <div *ngIf="f.Password.touched && f.Password.invalid" class="alert alert-danger">
+                <div *ngIf="f.Password.errors?.required">Password is required.</div>
+                Input 8 Character Password
+              </div>
+            </div>
                 <div >
                 <button type="submit" class="btn btn-primary btn-block btn-lg ">LogIn</button>
                 </div>

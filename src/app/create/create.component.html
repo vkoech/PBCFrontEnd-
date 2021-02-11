@@ -6,27 +6,33 @@
           Reset your password here!!
         </div>
         <div ng-app="myApp" ng-controller="myController" class="container">
-          <form #form="ngForm" (submit)="onSubmit(form)">
-                <div class="form-group">
-                  <label for="email">Employee Number:</label>
-                  <input type="EmployeeNo" class="form-control" id="employeeNo"
-                    #EmployeeNo="ngModel" [(ngModel)]="service.formData.EmployeeNo"
-                    [ngModelOptions]="{standalone: true}">
+          <form [formGroup]="createForm"(submit)="onSubmit()">
+            <div class="form-group">
+              <label for="password">Employee Number</label>
+              <input formControlName="EmployeeNo" id="EmployeeNo" type="text" class="form-control">
+              <div *ngIf="f.EmployeeNo.touched && f.EmployeeNo.invalid" class="alert alert-danger">
+                <div *ngIf="f.EmployeeNo.errors?.required">EmployeeNo is required.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Password">Password</label>
+              <input
+                formControlName="Password" id="Password" type="Password" class="form-control">
+              <div *ngIf="f.Password.touched && f.Password.invalid" class="alert alert-danger">
+                <div *ngIf="f.Password.errors?.required">Password is required.</div>
+                Input 8 Character Password
+              </div>
+            </div>
 
-                </div>
-                <div class="form-group">
-                  <label for="email">New Password:</label>
-                  <input type="password" class="form-control" id="newPassword"
-                  #newPassword="ngModel" [(ngModel)]="service.formData.Password"
-                  [ngModelOptions]="{standalone: true}">
-                </div>
-                <div class="form-group">
-                  <label for="email">Confirm Password:</label>
-                  <input type="password" class="form-control" id="password"
-                  #newPassword="ngModel" [(ngModel)]="service.formData.ConfirmPassword"
-                  [ngModelOptions]="{standalone: true}">
-                </div>
-                <div >
+            <div class="form-group">
+              <label for="ConfirmPassword">Confirm Password</label>
+              <input formControlName="ConfirmPassword" id="ConfirmPassword" type="password" class="form-control">
+              <div *ngIf="f.ConfirmPassword.touched && f.ConfirmPassword.invalid" class="alert alert-danger">
+                <div *ngIf="f.ConfirmPassword.errors?.required">Password is required.</div>
+                <div *ngIf="f.ConfirmPassword?.errors?.confirmedValidator">Password and Confirm Password must be match.</div>
+              </div>
+            </div>
+            <div>
                 <button type="submit" class="btn btn-primary btn-block btn-md ">Reset</button>
                 </div>
               </form>

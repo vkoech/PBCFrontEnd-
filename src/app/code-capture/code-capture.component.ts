@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Component, OnInit, Renderer2} from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {FormGroup, NgForm} from '@angular/forms';
 import {CodeCaptureService} from '../Shared/code-capture.service';
 
 
@@ -11,6 +11,8 @@ import {CodeCaptureService} from '../Shared/code-capture.service';
 })
 export class CodeCaptureComponent implements OnInit {
 
+  codeCaptureForm: FormGroup;
+  submitted = false;
   // tslint:disable-next-line:variable-name
   constructor(private _renderer: Renderer2, private _http: HttpClient, public service: CodeCaptureService) {
   }
@@ -31,12 +33,10 @@ export class CodeCaptureComponent implements OnInit {
   // tslint:disable-next-line:typedef
   resolved(token: any) {
     this.disabled = false;
-    this.service.postCodecapture().subscribe(
-        res => {
-
-        },
-        err => {console.log(err); }
-      );
-
     }
+  // tslint:disable-next-line:typedef
+
+  // tslint:disable-next-line:typedef
+  get f() {  return this.codeCaptureForm.controls; }
+
 }
